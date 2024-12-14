@@ -102,4 +102,9 @@ public class Evento {
         }
 
     }
+
+    @Override
+    public String toString() {
+        return this.getDate() + this.getTitle();
+    }
 }

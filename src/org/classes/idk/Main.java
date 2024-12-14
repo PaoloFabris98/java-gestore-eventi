@@ -18,6 +18,7 @@ public class Main {
 
         test.disdici();
         System.out.println("Nome evento: " + test.getPostiPrenotati());
+        System.out.println(test.toString());
 
     }
 }
