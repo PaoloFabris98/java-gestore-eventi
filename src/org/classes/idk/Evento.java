@@ -9,7 +9,7 @@ public class Evento {
     protected int postiTotali;
     protected int postiPrenotati;
 
-    public Evento(String titolo, int giorno, int mese, int anno, int postiTotali) {
+    public Evento(String titolo, int giorno, int mese, int anno, int postiTotali) throws IllegalArgumentException {
         if (titolo == null || titolo.isEmpty()) {
             throw new IllegalArgumentException("Il titolo non può essere vuoto.");
         }
@@ -103,7 +103,7 @@ public class Evento {
         }
     }
 
-    public void disdici(int time) {
+    public void disdici(int time) throws IllegalArgumentException {
         String timeStamp = Funct.timeNow();
         String tempDate = anno + Funct.numberFormatted(mese) + Funct.numberFormatted(giorno);
 

@@ -10,9 +10,6 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         do {
-            int temp = input.nextInt();
-            input.nextLine();
-            a = Funct.eventCreatorPremission(temp);
             if (a) {
                 System.out.println("---------------------------------");
                 System.out.println("Digita un numero:");
@@ -22,13 +19,21 @@ public class Main {
                 System.out.println("4 - Disdici");
                 System.out.println("5 - Exit");
                 System.out.println("---------------------------------");
-                int temp1 = input.nextInt();
+                int temp1;
                 try {
+                    temp1 = input.nextInt();
+                    if (temp1 < 0 || temp1 > 6) {
+                        System.out.println("Devi scegliere tra una delle opzioni date.");
+                    }
                     if (temp1 == 1) {
                         System.out.println("Quanti eventi vuoi inserire?");
                         input.nextLine();
                         int temp2 = input.nextInt();
+                        System.out.println("");
                         for (int i = 0; i < temp2; i++) {
+                            System.out.println("");
+                            System.out.println("Evento numero: " + (i + 1));
+                            System.out.println("---------------------------------");
                             System.out.println("Inserisci il nome dell'evento:");
                             String nome = input.nextLine();
                             if (nome.isEmpty()) {
@@ -51,7 +56,8 @@ public class Main {
                     } else if (temp1 == 2) {
                         System.out.println("\n");
                         for (int i = 0; i < events.size(); i++) {
-                            System.out.println("Titolo dell'evento numero: " + (i + 1) + ".");
+                            System.out.println("Evento numero: " + (i + 1) + ".");
+                            System.out.println("Titolo: " + events.get(i).getTitle() + ".");
                             System.out.println("L'evento si terrà in data: " + events.get(i).getDate() + ".");
                             System.out.println(
                                     "I posti totali per l'evento sono: " + events.get(i).getPostiTotali() + ".");
@@ -100,7 +106,8 @@ public class Main {
                     }
                 } catch (Exception e) {
                     input.close();
-                    throw new IllegalArgumentException("Puoi inserire solo numeri");
+                    throw new IllegalArgumentException(
+                            "Nel campo per il nome dell'evento puoi inserire solo una stringa.\n In tutti gli altri campi, possono essere inseriti solo numeri interi, positivi.");
                 }
 
             } else {
