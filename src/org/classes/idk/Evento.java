@@ -1,7 +1,5 @@
 package org.classes.idk;
 
-import org.classes.idk.*;
-
 public class Evento {
     protected String titolo;
     protected int giorno;
@@ -25,9 +23,10 @@ public class Evento {
         String timeStamp = Funct.timeNow();
         String temp = anno + Funct.numberFormatted(mese) + Funct.numberFormatted(giorno);
         if (Integer.parseInt(timeStamp) > Integer.parseInt(temp)) {
-            System.out.println("Ora: " + timeStamp);
-            System.out.println("Data Evento: " + temp);
             throw new IllegalArgumentException("La data attuale è dopo la data dell'evento");
+        }
+        if (postiTotali <= 0) {
+            throw new IllegalArgumentException("Non possono esserci posti inferiori o uguali a zero.");
         }
         this.titolo = titolo;
         this.giorno = giorno;
@@ -52,7 +51,6 @@ public class Evento {
     }
 
     public void setDate(int giorno, int mese, int anno) {
-        System.out.println("La data dev'essere formattata in giorno/mese/anno.");
         String timeStamp = Funct.timeNow();
         String temp = anno + Funct.numberFormatted(mese) + Funct.numberFormatted(giorno);
         if (Integer.parseInt(timeStamp) > Integer.parseInt(temp)) {
@@ -96,11 +94,11 @@ public class Evento {
             System.out.println(this.getPostiPrenotati());
             if (Integer.parseInt(timeStamp) < Integer.parseInt(tempDate)) {
                 for (int i = 0; i < time; i++) {
-                    this.postiPrenotati = this.postiPrenotati + 1;
-                    System.out.println(this.getPostiPrenotati());
+                    this.postiPrenotati = getPostiPrenotati() + 1;
                 }
+                System.out.println(this.getPostiPrenotati());
             } else {
-                System.out.println("errore");
+                System.out.println("L'evento è già passato, non puoi prenotare.");
             }
         }
     }
@@ -111,10 +109,15 @@ public class Evento {
 
         if (Integer.parseInt(timeStamp) < Integer.parseInt(tempDate)) {
             for (int i = 0; i < time; i++) {
-                this.postiPrenotati = this.postiPrenotati - 1;
-                System.out.println(this.getPostiPrenotati());
+                if ((getPostiPrenotati() - time) < 0) {
+                    System.out.println("Non puoi disdire cosi tante prenotazioni");
+                    System.out.println("I posti attualmente prenotati sono: " + getPostiPrenotati());
+                } else {
+                    this.postiPrenotati = getPostiPrenotati() - 1;
+                    System.out.println("I posti attualmente prenotati sono: " + getPostiPrenotati());
+                }
             }
-        } else {
+        } else if (Integer.parseInt(timeStamp) > Integer.parseInt(tempDate)) {
             System.out.println("L'evento è passato non è possibile disdire.");
         }
 

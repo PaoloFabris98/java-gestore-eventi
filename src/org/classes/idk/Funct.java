@@ -1,10 +1,8 @@
 package org.classes.idk;
 
-import org.classes.idk.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+
 import java.util.Calendar;
-import java.util.List;
 
 public class Funct {
     public static String timeNow() {
@@ -16,8 +14,12 @@ public class Funct {
         return String.format("%02d", i);
     }
 
-    public static boolean eventCreatorPremission(String temp) {
-        return temp.toLowerCase().equals("y");
+    public static boolean eventCreatorPremission(int temp) {
+        if (temp == 5) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 }
