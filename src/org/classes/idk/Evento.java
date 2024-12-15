@@ -1,5 +1,7 @@
 package org.classes.idk;
 
+import org.classes.idk.*;
+
 public class Evento {
     protected String titolo;
     protected int giorno;
@@ -70,33 +72,48 @@ public class Evento {
         return this.postiPrenotati;
     }
 
-    public void setPostiPrenotati(int i) {
-        if (i > this.postiTotali) {
-            System.out.println("Non si possono prenotare più posti di quelli disponibili.");
-        } else {
-            this.postiPrenotati = i;
-        }
+    public int getPostiDisponibili() {
+        return (getPostiTotali() - getPostiPrenotati());
     }
+    /*
+     * public void setPostiPrenotati(int i) {
+     * if (i > this.postiTotali) {
+     * System.out.
+     * println("Non si possono prenotare più posti di quelli disponibili.");
+     * } else {
+     * this.postiPrenotati += i;
+     * }
+     * }
+     */
 
-    public void prenota() {
-        int temp = this.postiPrenotati++;
+    public void prenota(int time) {
+        int temp = (this.postiPrenotati + time);
         String timeStamp = Funct.timeNow();
         String tempDate = anno + Funct.numberFormatted(mese) + Funct.numberFormatted(giorno);
-        if (temp > this.postiPrenotati) {
+        if (temp > getPostiTotali()) {
             System.out.println("Non ci sono posti disponibili per una prenotazione");
         } else {
-            if (Integer.parseInt(timeStamp) > Integer.parseInt(tempDate)) {
-                this.postiPrenotati += 1;
+            System.out.println(this.getPostiPrenotati());
+            if (Integer.parseInt(timeStamp) < Integer.parseInt(tempDate)) {
+                for (int i = 0; i < time; i++) {
+                    this.postiPrenotati = this.postiPrenotati + 1;
+                    System.out.println(this.getPostiPrenotati());
+                }
+            } else {
+                System.out.println("errore");
             }
         }
     }
 
-    public void disdici() {
+    public void disdici(int time) {
         String timeStamp = Funct.timeNow();
         String tempDate = anno + Funct.numberFormatted(mese) + Funct.numberFormatted(giorno);
 
         if (Integer.parseInt(timeStamp) < Integer.parseInt(tempDate)) {
-            this.postiPrenotati -= 1;
+            for (int i = 0; i < time; i++) {
+                this.postiPrenotati = this.postiPrenotati - 1;
+                System.out.println(this.getPostiPrenotati());
+            }
         } else {
             System.out.println("L'evento è passato non è possibile disdire.");
         }
@@ -105,6 +122,6 @@ public class Evento {
 
     @Override
     public String toString() {
-        return this.getDate() + this.getTitle();
+        return this.getDate() + " " + this.getTitle();
     }
 }
