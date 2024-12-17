@@ -9,6 +9,11 @@ public class Main {
         input in = new input();
         Output out = new Output();
 
+        Concerto test = new Concerto("null", 10, 10, 2030, 500, 10, 20, 20.69);
+        out.sysOut(test.getDate());
+        out.sysOut(test.getOrario());
+        out.sysOut(test.getPrezzo());
+
         while (a) {
             if (a) {
                 out.sysOut("---------------------------------");
@@ -117,5 +122,6 @@ public class Main {
         }
 
         in.inputClose();
+
     }
 }
