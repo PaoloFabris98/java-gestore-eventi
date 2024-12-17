@@ -15,10 +15,15 @@ public class Funct {
     }
 
     public static boolean eventCreatorPremission(int temp) {
-        if (temp == 5) {
-            return false;
-        } else {
-            return true;
+        try {
+
+            if (temp == 5) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("La selezione può contenere solo numeri interi: 1-5");
         }
     }
 

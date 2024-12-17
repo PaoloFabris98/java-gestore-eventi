@@ -38,6 +38,8 @@ public class Evento {
 
     }
 
+    Output out = new Output();
+
     public String getTitle() {
         return this.titolo;
     }
@@ -51,14 +53,18 @@ public class Evento {
     }
 
     public void setDate(int giorno, int mese, int anno) {
-        String timeStamp = Funct.timeNow();
-        String temp = anno + Funct.numberFormatted(mese) + Funct.numberFormatted(giorno);
-        if (Integer.parseInt(timeStamp) > Integer.parseInt(temp)) {
-            System.out.println("Ora: " + timeStamp);
-            System.out.println("Data Evento: " + temp);
-            throw new IllegalArgumentException("La data attuale è dopo la data dell'evento");
+        try {
+            String timeStamp = Funct.timeNow();
+            String temp = anno + Funct.numberFormatted(mese) + Funct.numberFormatted(giorno);
+            if (Integer.parseInt(timeStamp) > Integer.parseInt(temp)) {
+                out.sysOut("Ora: " + timeStamp);
+                out.sysOut("Data Evento: " + temp);
+                throw new IllegalArgumentException("La data attuale è dopo la data dell'evento");
+            }
+            this.data = giorno + "/" + mese + "/" + anno;
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Puoi inserire solo numeri interi nella creazione della data.");
         }
-        this.data = giorno + "/" + mese + "/" + anno;
 
     }
 
@@ -85,40 +91,52 @@ public class Evento {
      */
 
     public void prenota(int time) {
-        int temp = (this.postiPrenotati + time);
-        String timeStamp = Funct.timeNow();
-        String tempDate = anno + Funct.numberFormatted(mese) + Funct.numberFormatted(giorno);
-        if (temp > getPostiTotali()) {
-            System.out.println("Non ci sono posti disponibili per una prenotazione");
-        } else {
-            System.out.println(this.getPostiPrenotati());
-            if (Integer.parseInt(timeStamp) < Integer.parseInt(tempDate)) {
-                for (int i = 0; i < time; i++) {
-                    this.postiPrenotati = getPostiPrenotati() + 1;
-                }
-                System.out.println(this.getPostiPrenotati());
+        try {
+
+            int temp = (this.postiPrenotati + time);
+            String timeStamp = Funct.timeNow();
+            String tempDate = anno + Funct.numberFormatted(mese) + Funct.numberFormatted(giorno);
+            if (temp > getPostiTotali()) {
+                out.sysOut("Non puoi prenotare cosi tanti posti, i posti disponibili sono:"
+                        + getPostiDisponibili());
             } else {
-                System.out.println("L'evento è già passato, non puoi prenotare.");
+                if (Integer.parseInt(timeStamp) < Integer.parseInt(tempDate)) {
+                    for (int i = 0; i < time; i++) {
+                        this.postiPrenotati = getPostiPrenotati() + 1;
+                    }
+                    out.sysOut("Hai prenotato: " + time + " posti.");
+                    out.sysOut("I posti attualmente prenotati sono: " + getPostiPrenotati());
+                } else {
+                    out.sysOut("L'evento è già passato, non puoi prenotare.");
+                }
             }
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Per prenotare dei posti, puoi inserire solamente numeri interi.");
         }
     }
 
     public void disdici(int time) throws IllegalArgumentException {
-        String timeStamp = Funct.timeNow();
-        String tempDate = anno + Funct.numberFormatted(mese) + Funct.numberFormatted(giorno);
+        try {
 
-        if (Integer.parseInt(timeStamp) < Integer.parseInt(tempDate)) {
-            for (int i = 0; i < time; i++) {
+            String timeStamp = Funct.timeNow();
+            String tempDate = anno + Funct.numberFormatted(mese) + Funct.numberFormatted(giorno);
+
+            if (Integer.parseInt(timeStamp) < Integer.parseInt(tempDate)) {
                 if ((getPostiPrenotati() - time) < 0) {
-                    System.out.println("Non puoi disdire cosi tante prenotazioni");
-                    System.out.println("I posti attualmente prenotati sono: " + getPostiPrenotati());
+                    out.sysOut("Non puoi disdire cosi tante prenotazioni");
+                    out.sysOut("I posti attualmente prenotati sono: " + getPostiPrenotati());
                 } else {
-                    this.postiPrenotati = getPostiPrenotati() - 1;
-                    System.out.println("I posti attualmente prenotati sono: " + getPostiPrenotati());
+                    for (int i = 0; i < time; i++) {
+                        this.postiPrenotati = getPostiPrenotati() - 1;
+                    }
+                    out.sysOut("Hai disdetto: " + time + " posti.");
+                    out.sysOut("I posti attualmente prenotati sono: " + getPostiPrenotati());
                 }
+            } else if (Integer.parseInt(timeStamp) > Integer.parseInt(tempDate)) {
+                out.sysOut("L'evento è passato non è possibile disdire.");
             }
-        } else if (Integer.parseInt(timeStamp) > Integer.parseInt(tempDate)) {
-            System.out.println("L'evento è passato non è possibile disdire.");
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Per disdire dei posti, puoi inserire solamente numeri interi.");
         }
 
     }
