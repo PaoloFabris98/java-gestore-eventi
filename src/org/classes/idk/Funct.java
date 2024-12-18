@@ -10,6 +10,15 @@ public class Funct {
         return timeStamp;
     }
 
+    public static boolean dayPassed(String i) {
+        return (Integer.parseInt(timeNow()) > Integer.parseInt(i));
+    }
+
+    public static String minuteHourNow() {
+        String timeStamp = new SimpleDateFormat("HHmm").format(Calendar.getInstance().getTime());
+        return timeStamp;
+    }
+
     public static String numberFormatted(int i) {
         return String.format("%02d", i);
     }
@@ -17,7 +26,7 @@ public class Funct {
     public static boolean eventCreatorPremission(int temp) {
         try {
 
-            if (temp == 5) {
+            if (temp == 6) {
                 return false;
             } else {
                 return true;

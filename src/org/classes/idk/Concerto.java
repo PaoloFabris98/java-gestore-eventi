@@ -4,7 +4,7 @@ public class Concerto extends Evento {
     protected int minuti;
     protected int ore;
     protected String orrario;
-    protected Double prezzo;
+    protected Double prezzo = 0.0;
 
     public Concerto(String titolo, int giorno, int mese, int anno, int postiTotali, int minuti, int ore,
             Double prezzo) {
@@ -17,7 +17,7 @@ public class Concerto extends Evento {
         if (postiTotali <= 0) {
             throw new IllegalArgumentException("Il numero di posti totali deve essere positivo.");
         }
-        if (prezzo < 0) {
+        if (prezzo < 0.0) {
             throw new IllegalArgumentException("Il prezzo non può essere inferiore a 0.");
         }
         if (minuti < 0 || minuti > 59) {
@@ -26,10 +26,15 @@ public class Concerto extends Evento {
         if (ore < 0 || ore > 23) {
             throw new IllegalArgumentException("Le ore devono essere comprese tra 0 e 23.");
         }
+        String hourStamp = Funct.minuteHourNow();
+        String temp1 = Funct.numberFormatted(ore) + "" + Funct.numberFormatted(minuti);
+        if (Integer.parseInt(hourStamp) >= Integer.parseInt(temp1)) {
+            throw new IllegalArgumentException("L'orario dell'evento è già passato.");
+        }
+
         super(titolo, giorno, mese, anno, postiTotali);
 
-        String temp = minuti + ":" + ore;
-
+        String temp = ore + ":" + minuti;
         this.minuti = minuti;
         this.ore = ore;
         this.orrario = temp;
@@ -51,7 +56,7 @@ public class Concerto extends Evento {
         if (ore < 0 || ore > 23) {
             throw new IllegalArgumentException("Le ore devono essere comprese tra 0 e 23.");
         }
-        String temp = minuti + ":" + ore;
+        String temp = Funct.numberFormatted(ore) + ":" + Funct.numberFormatted(minuti);
         this.orrario = temp;
     }
 
@@ -64,7 +69,7 @@ public class Concerto extends Evento {
 
     @Override
     public String toString() {
-        return this.getDate() + " " + getOrario() + " " + this.getTitle() + " " + getPrezzo() + " Euro.";
+        return this.getDate() + " " + getOrario() + " " + this.getTitle() + " " + getPrezzo() + "euro.";
     }
 
 }

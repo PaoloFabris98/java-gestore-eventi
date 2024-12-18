@@ -20,9 +20,8 @@ public class Evento {
             throw new IllegalArgumentException("Il numero di posti totali deve essere positivo.");
         }
 
-        String timeStamp = Funct.timeNow();
         String temp = anno + Funct.numberFormatted(mese) + Funct.numberFormatted(giorno);
-        if (Integer.parseInt(timeStamp) > Integer.parseInt(temp)) {
+        if (Funct.dayPassed(temp)) {
             throw new IllegalArgumentException("La data attuale è dopo la data dell'evento");
         }
         if (postiTotali <= 0) {
@@ -33,7 +32,7 @@ public class Evento {
         this.mese = mese;
         this.anno = anno;
         this.postiTotali = postiTotali;
-        this.data = giorno + "/" + mese + "/" + anno;
+        this.data = Funct.numberFormatted(giorno) + "/" + Funct.numberFormatted(mese) + "/" + anno;
         this.postiPrenotati = 0;
 
     }
