@@ -39,51 +39,7 @@ public class Main {
                 } else if (temp1 == 4) {
                     Options.prenotazioni(events, eventsConcert, in);
                 } else if (temp1 == 5) {
-                    out.sysOut("\n");
-                    int temp2;
-                    out.sysOut("Per cosa vuoi disdirti?");
-                    out.sysOut("---------------------------------");
-                    out.sysOut("0 - Eventi");
-                    out.sysOut("1 - Concerti");
-                    out.sysOut("---------------------------------");
-                    try {
-                        temp2 = in.nextInt();
-                    } catch (Exception e) {
-                        throw new IllegalArgumentException("Puoi inserire solo numeri.");
-                    }
-                    if (temp2 == 0) {
-                        if (eventsConcert.size() == 0) {
-                            out.sysOut("Non ci sono eventi per cui disdirsi");
-                        } else {
-                            out.sysOut("Per quale evento vuoi disdire?");
-                            out.sysOut("---------------------------------");
-                            for (int i = 0; i < events.size(); i++) {
-                                out.sysOut((i) + " - " + events.get(i).getTitle());
-                            }
-                            out.sysOut("---------------------------------");
-                            int c = in.nextInt();
-                            in.newLine();
-                            out.sysOut("Quanti posti vuoi disdire?");
-                            int d = in.nextInt();
-                            events.get(c).disdici(d);
-                        }
-                    } else if (temp2 == 1) {
-                        if (eventsConcert.size() == 0) {
-                            out.sysOut("Non ci sono concerti per cui prenotarsi");
-                        } else {
-                            out.sysOut("Per quale concerto vuoi prenotarti?");
-                            out.sysOut("---------------------------------");
-                            for (int i = 0; i < eventsConcert.size(); i++) {
-                                out.sysOut((i) + " - " + eventsConcert.get(i).getTitle());
-                            }
-                            out.sysOut("---------------------------------");
-                            int c = in.nextInt();
-                            in.newLine();
-                            out.sysOut("Quanti posti vuoi prenotare?");
-                            int d = in.nextInt();
-                            eventsConcert.get(c).disdici(d);
-                        }
-                    }
+                    Options.disdette(events, eventsConcert, in);
                 } else if (temp1 == 6) {
                     a = Funct.eventCreatorPremission(temp1);
 
