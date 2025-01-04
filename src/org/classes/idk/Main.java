@@ -1,51 +1,45 @@
 package org.classes.idk;
 
-import java.util.ArrayList;
-
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Evento> events = new ArrayList<>();
-        ArrayList<Concerto> eventsConcert = new ArrayList<>();
+        ProgrammaEventi eventi = new ProgrammaEventi();
+        ProgrammaConcerti concerti = new ProgrammaConcerti();
         Boolean a = true;
         input in = new input();
-        Output out = new Output();
 
         while (a) {
             if (a) {
-                out.sysOut("---------------------------------");
-                out.sysOut("Digita un numero:");
-                out.sysOut("1 - Inserisci evento/i");
-                out.sysOut("2 - inserisci concerto/i");
-                out.sysOut("3 - Visualizza eventi e concerti");
-                out.sysOut("4 - Prenota");
-                out.sysOut("5 - Disdici");
-                out.sysOut("6 - Exit");
-                out.sysOut("---------------------------------");
+                Output.sysOut("---------------------------------");
+                Output.sysOut("Digita un numero:");
+                Output.sysOut("1 - Inserisci evento/i");
+                Output.sysOut("2 - inserisci concerto/i");
+                Output.sysOut("3 - Visualizza eventi e concerti");
+                Output.sysOut("4 - Prenota");
+                Output.sysOut("5 - Disdici");
+                Output.sysOut("6 - Exit");
+                Output.sysOut("---------------------------------");
                 int temp1;
-                try {
-                    temp1 = in.nextInt();
-                } catch (Exception e) {
-                    throw new IllegalArgumentException("La selezione può contenere solo numeri dal 1 al 5.");
-                }
+                temp1 = in.nextInt();
                 if (temp1 < 0 || temp1 > 6) {
-                    out.sysOut("Devi scegliere tra una delle opzioni date.");
+                    Output.sysOut("Devi scegliere tra una delle opzioni date.");
                 }
                 if (temp1 == 1) {
-                    Options.creaEvento(events, in);
+                    Options.creaEvento(eventi, in);
                 } else if (temp1 == 2) {
-                    Options.creaConcerto(eventsConcert, in);
+                    Options.creaConcerto(concerti, in);
                 } else if (temp1 == 3) {
-                    Options.visualizzaEventiConcerti(events, eventsConcert, in);
+                    Options.visualizzaEventiConcerti(eventi, concerti, in);
                 } else if (temp1 == 4) {
-                    Options.prenotazioni(events, eventsConcert, in);
+                    Options.prenotazioni(eventi, concerti, in);
                 } else if (temp1 == 5) {
-                    Options.disdette(events, eventsConcert, in);
+                    Options.disdette(eventi, concerti, in);
                 } else if (temp1 == 6) {
                     a = Funct.eventCreatorPremission(temp1);
-
-                    out.sysOut("Buona giornata!");
+                    Output.sysOut("Buona giornata!");
+                } else if (temp1 <= 0 || temp1 > 6) {
+                    Output.sysOut("Puoi scegliere solamente una delle opzioni date!");
                 } else {
-                    out.sysOut("Ops, qualcosa è andato storto.");
+                    Output.sysOut("Ops, qualcosa è andato storto.");
                     break;
                 }
 

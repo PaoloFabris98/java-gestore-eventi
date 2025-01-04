@@ -3,8 +3,9 @@ package org.classes.idk;
 public class Concerto extends Evento {
     protected int minuti;
     protected int ore;
-    protected String orrario;
+    protected String orario;
     protected Double prezzo = 0.0;
+    protected String prezzoFormattato;
 
     public Concerto(String titolo, int giorno, int mese, int anno, int postiTotali, int minuti, int ore,
             Double prezzo) {
@@ -26,27 +27,38 @@ public class Concerto extends Evento {
         if (ore < 0 || ore > 23) {
             throw new IllegalArgumentException("Le ore devono essere comprese tra 0 e 23.");
         }
-        String hourStamp = Funct.minuteHourNow();
-        String temp1 = Funct.numberFormatted(ore) + "" + Funct.numberFormatted(minuti);
-        if (Integer.parseInt(hourStamp) >= Integer.parseInt(temp1)) {
-            throw new IllegalArgumentException("L'orario dell'evento è già passato.");
-        }
 
         super(titolo, giorno, mese, anno, postiTotali);
+
+        String eventTime = Funct.numberFormatted(ore) + Funct.numberFormatted(minuti);
+
+        long tempHourNow = Long.parseLong(Funct.timeNow() + Funct.minuteHourNow());
+        long tempEventTime = Long
+                .parseLong(this.anno + Funct.numberFormatted(this.mese) + Funct.numberFormatted(this.giorno)
+                        + eventTime);
+
+        if (tempHourNow > tempEventTime) {
+            throw new IllegalArgumentException("L'orario dell'evento è già passato.");
+        }
 
         String temp = ore + ":" + minuti;
         this.minuti = minuti;
         this.ore = ore;
-        this.orrario = temp;
+        this.orario = temp;
         this.prezzo = prezzo;
+        this.prezzoFormattato = prezzo + "€";
     }
 
     public String getOrario() {
-        return this.orrario;
+        return this.orario;
     }
 
     public Double getPrezzo() {
         return this.prezzo;
+    }
+
+    public String getPrezzoFormattato() {
+        return (this.prezzo + " Euro");
     }
 
     public void setOrario(int minuti, int ore) {
@@ -57,7 +69,7 @@ public class Concerto extends Evento {
             throw new IllegalArgumentException("Le ore devono essere comprese tra 0 e 23.");
         }
         String temp = Funct.numberFormatted(ore) + ":" + Funct.numberFormatted(minuti);
-        this.orrario = temp;
+        this.orario = temp;
     }
 
     public void setPrezzo(Double prezzo) {
@@ -69,7 +81,7 @@ public class Concerto extends Evento {
 
     @Override
     public String toString() {
-        return this.getDate() + " " + getOrario() + " " + this.getTitle() + " " + getPrezzo() + "euro.";
+        return this.getDate() + " " + getOrario() + " " + this.getTitle() + " " + getPrezzo() + " euro.";
     }
 
 }
