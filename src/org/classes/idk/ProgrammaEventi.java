@@ -10,7 +10,7 @@ public class ProgrammaEventi<T extends Evento> {
         this.elements.add(i);
     }
 
-    public ArrayList<T> getEventsArray() {
+    public ArrayList<T> getItemsArray() {
         return this.elements;
     }
 

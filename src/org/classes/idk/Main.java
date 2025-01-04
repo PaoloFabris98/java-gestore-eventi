@@ -34,6 +34,12 @@ public class Main {
                 } else if (temp1 == 5) {
                     Options.disdette(eventi, concerti, in);
                 } else if (temp1 == 6) {
+                    Options.eventList(eventi, concerti, in);
+                } else if (temp1 == 7) {
+                    // ! getElementsNumber()
+                } else if (temp1 == 8) {
+                    // ! un metodo che svuota la lista di eventi
+                } else if (temp1 == 9) {
                     a = Funct.eventCreatorPremission(temp1);
                     Output.sysOut("Buona giornata!");
                 } else if (temp1 <= 0 || temp1 > 6) {
