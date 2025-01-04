@@ -2,7 +2,7 @@ package org.classes.idk;
 
 import java.util.ArrayList;
 
-public class ProgrammaEventi<T extends Evento> {
+public class Test<T extends Evento> {
     protected ArrayList<T> elements = new ArrayList<>();
     protected ArrayList<T> returnedEvent = new ArrayList<>();
 

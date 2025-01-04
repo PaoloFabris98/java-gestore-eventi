@@ -2,7 +2,7 @@ package org.classes.idk;
 
 public class Options {
 
-    public static void creaEvento(ProgrammaEventi eventi, input in) {
+    public static void creaEvento(ProgrammaEventi<Evento> eventi, input in) {
         Output.sysOut("Quanti eventi vuoi creare?");
         in.newLine();
         int temp2 = in.nextInt();
@@ -34,7 +34,7 @@ public class Options {
         }
     }
 
-    public static void creaConcerto(ProgrammaConcerti concerti, input in) {
+    public static void creaConcerto(ProgrammaEventi<Concerto> concerti, input in) {
         Output.sysOut("Quanti concerti vuoi creare?");
         in.newLine();
         int temp2 = in.nextInt();
@@ -72,13 +72,16 @@ public class Options {
         }
     }
 
-    public static void visualizzaEventiConcerti(ProgrammaEventi eventi, ProgrammaConcerti concerti, input in) {
+    public static void visualizzaEventiConcerti(ProgrammaEventi<Evento> eventi, ProgrammaEventi<Concerto> concerti,
+            input in) {
         Output.sysOut("\n");
         int temp2;
         Output.sysOut("Cosa vuoi visualizzare?");
         Output.sysOut("---------------------------------");
-        Output.sysOut("0 - Eventi");
-        Output.sysOut("1 - Concerti");
+        Output.sysOut("0 - Evento");
+        Output.sysOut("1 - Concerto");
+        Output.sysOut("2 - Lista Eventi");
+        Output.sysOut("3 - Lista Concerti");
         Output.sysOut("---------------------------------");
         try {
             temp2 = in.nextInt();
@@ -134,12 +137,25 @@ public class Options {
                     Output.sysOut("\n");
                 }
             }
+        } else if (temp2 == 2) {
+            if (eventi.getEventsArray().size() == 0) {
+                Output.sysOut("Non ci sono eventi da visualizzare");
+            } else {
+                eventi.formattedElements();
+            }
+        } else if (temp2 == 3) {
+            if (eventi.getEventsArray().size() == 0) {
+                Output.sysOut("Non ci sono eventi da visualizzare");
+            } else {
+                concerti.formattedElements();
+            }
+
         } else {
             Output.sysOut("Non hai selezionato un numero corretto.");
         }
     }
 
-    public static void prenotazioni(ProgrammaEventi eventi, ProgrammaConcerti concerti, input in) {
+    public static void prenotazioni(ProgrammaEventi<Evento> eventi, ProgrammaEventi<Concerto> concerti, input in) {
         Output.sysOut("\n");
         int temp2;
         Output.sysOut("Per cosa vuoi prenotarti?");
@@ -191,7 +207,7 @@ public class Options {
         }
     }
 
-    public static void disdette(ProgrammaEventi eventi, ProgrammaConcerti concerti, input in) {
+    public static void disdette(ProgrammaEventi<Evento> eventi, ProgrammaEventi<Concerto> concerti, input in) {
         Output.sysOut("\n");
         int temp2;
         Output.sysOut("Per cosa vuoi disdirti?");
