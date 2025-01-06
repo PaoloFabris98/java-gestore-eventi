@@ -36,9 +36,9 @@ public class Main {
                 } else if (temp1 == 6) {
                     Options.eventList(eventi, concerti, in);
                 } else if (temp1 == 7) {
-                    // ! getElementsNumber()
+                    Options.getElementsNumber(eventi, concerti, in);
                 } else if (temp1 == 8) {
-                    // ! un metodo che svuota la lista di eventi
+                    Options.clearList(eventi, concerti, in);
                 } else if (temp1 == 9) {
                     a = Funct.eventCreatorPremission(temp1);
                     Output.sysOut("Buona giornata!");

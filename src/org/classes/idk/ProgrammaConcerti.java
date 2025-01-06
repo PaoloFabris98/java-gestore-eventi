@@ -56,6 +56,10 @@ public class ProgrammaConcerti implements generics<Concerto> {
         returnedEvent.clear();
     }
 
+    public void cleanArray() {
+        this.elements.clear();
+    }
+
     public void formattedElements() {
         for (int i = 0; i < this.elements.size(); i++) {
             Concerto currentElement = this.elements.get(i);

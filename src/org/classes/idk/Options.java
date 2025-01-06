@@ -326,4 +326,46 @@ public class Options {
         }
 
     }
+
+    public static void getElementsNumber(ProgrammaEventi eventi, ProgrammaConcerti concerti, input in) {
+        Output.sysOut("\n");
+        int temp2;
+
+        Output.sysOut("Numero di eventi/concerti");
+        Output.sysOut("---------------------------------");
+        Output.sysOut("0 - Eventi");
+        Output.sysOut("1 - Concerti");
+        Output.sysOut("---------------------------------");
+
+        temp2 = in.nextInt();
+
+        if (temp2 == 0) {
+            Output.sysOut("Il numero di eventi presente nella lista è: " + eventi.getElementsNumber());
+        } else if (temp2 == 1) {
+            Output.sysOut("Il numero di concerti presente nella lista è: " + eventi.getElementsNumber());
+        }
+
+    }
+
+    public static void clearList(ProgrammaEventi eventi, ProgrammaConcerti concerti, input in) {
+        Output.sysOut("\n");
+        int temp2;
+
+        Output.sysOut("Quale lista vuoi svuotare?");
+        Output.sysOut("---------------------------------");
+        Output.sysOut("0 - Eventi");
+        Output.sysOut("1 - Concerti");
+        Output.sysOut("---------------------------------");
+
+        temp2 = in.nextInt();
+
+        if (temp2 == 0) {
+            eventi.cleanArray();
+            Output.sysOut("Eventi cancellati.");
+        } else if (temp2 == 1) {
+            concerti.cleanArray();
+            Output.sysOut("Concerti cancellati.");
+        }
+
+    }
 }

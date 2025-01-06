@@ -53,7 +53,11 @@ public class ProgrammaEventi implements generics<Evento> {
     }
 
     public void cleanReturnedArray() {
-        returnedEvent.clear();
+        this.returnedEvent.clear();
+    }
+
+    public void cleanArray() {
+        this.elements.clear();
     }
 
     public void formattedElements() {
