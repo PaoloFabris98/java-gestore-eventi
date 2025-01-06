@@ -4,6 +4,11 @@ import java.util.Scanner;
 
 public class input {
     protected Scanner input = new Scanner(System.in);
+    private int tentativiMassimi = 3;
+
+    public input(int tentativiMassimi) {
+        this.tentativiMassimi = tentativiMassimi;
+    }
 
     public void newLine() {
         input.nextLine();
@@ -15,7 +20,7 @@ public class input {
 
     public int nextInt() {
         int i = 0;
-        while (i < 3) {
+        while (i < tentativiMassimi) {
             try {
                 return input.nextInt();
             } catch (Exception e) {
@@ -24,12 +29,13 @@ public class input {
                 input.nextLine();
             }
         }
-        throw new IllegalArgumentException("Hai Superato il numero di tentativi massimi. (3)");
+        throw new IllegalArgumentException(
+                "Hai Superato il numero di tentativi massimi." + " (" + tentativiMassimi + ")");
     }
 
     public Double nextDouble() {
         int i = 0;
-        while (i < 3) {
+        while (i < tentativiMassimi) {
             try {
                 return input.nextDouble();
             } catch (Exception e) {
@@ -38,7 +44,8 @@ public class input {
                 input.nextLine();
             }
         }
-        throw new IllegalArgumentException("Hai Superato il numero di tentativi massimi. (3)");
+        throw new IllegalArgumentException(
+                "Hai Superato il numero di tentativi massimi." + " (" + tentativiMassimi + ")");
     }
 
     public void inputClose() {

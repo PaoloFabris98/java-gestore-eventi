@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Options {
 
-    public static void creaEvento(ProgrammaEventi<Evento> eventi, input in) {
+    public static void creaEvento(ProgrammaEventi eventi, input in) {
         Output.sysOut("Quanti eventi vuoi creare?");
         in.newLine();
         int temp2 = in.nextInt();
@@ -37,7 +37,7 @@ public class Options {
         }
     }
 
-    public static void creaConcerto(ProgrammaEventi<Concerto> concerti, input in) {
+    public static void creaConcerto(ProgrammaConcerti concerti, input in) {
         Output.sysOut("Quanti concerti vuoi creare?");
         in.newLine();
         int temp2 = in.nextInt();
@@ -76,7 +76,7 @@ public class Options {
         }
     }
 
-    public static void visualizzaEventiConcerti(ProgrammaEventi<Evento> eventi, ProgrammaEventi<Concerto> concerti,
+    public static void visualizzaEventiConcerti(ProgrammaEventi eventi, ProgrammaConcerti concerti,
             input in) {
         Output.sysOut("\n");
         int temp2;
@@ -159,7 +159,7 @@ public class Options {
         }
     }
 
-    public static void prenotazioni(ProgrammaEventi<Evento> eventi, ProgrammaEventi<Concerto> concerti, input in) {
+    public static void prenotazioni(ProgrammaEventi eventi, ProgrammaConcerti concerti, input in) {
         Output.sysOut("\n");
         int temp2;
         Output.sysOut("Per cosa vuoi prenotarti?");
@@ -207,7 +207,7 @@ public class Options {
         }
     }
 
-    public static void disdette(ProgrammaEventi<Evento> eventi, ProgrammaEventi<Concerto> concerti, input in) {
+    public static void disdette(ProgrammaEventi eventi, ProgrammaConcerti concerti, input in) {
         Output.sysOut("\n");
         int temp2;
         Output.sysOut("Per cosa vuoi disdirti?");
@@ -257,7 +257,7 @@ public class Options {
         }
     }
 
-    public static void eventList(ProgrammaEventi<Evento> eventi, ProgrammaEventi<Concerto> concerti, input in) {
+    public static void eventList(ProgrammaEventi eventi, ProgrammaConcerti concerti, input in) {
         Output.sysOut("\n");
         int temp2;
 

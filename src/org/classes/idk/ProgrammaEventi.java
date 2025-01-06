@@ -2,19 +2,21 @@ package org.classes.idk;
 
 import java.util.ArrayList;
 
-public class ProgrammaEventi<T extends Evento> {
-    protected ArrayList<T> elements = new ArrayList<>();
-    protected ArrayList<T> returnedEvent = new ArrayList<>();
+public class ProgrammaEventi implements generics<Evento> {
+    protected ArrayList<Evento> elements = new ArrayList<Evento>();
+    protected ArrayList<Evento> returnedEvent = new ArrayList<Evento>();
 
-    public void setEvent(T i) {
+    @Override
+    public void setEvent(Evento i) {
         this.elements.add(i);
     }
 
-    public ArrayList<T> getItemsArray() {
+    @Override
+    public ArrayList<Evento> getItemsArray() {
         return this.elements;
     }
 
-    public ArrayList<T> getEvents(int giorno, int mese, int anno) {
+    public ArrayList<Evento> getEvents(int giorno, int mese, int anno) {
         cleanReturnedArray();
         if (giorno < 1 || giorno > 31) {
             throw new IllegalArgumentException("Il giorno dev'essere compreso tra 1 e 31");
@@ -31,7 +33,7 @@ public class ProgrammaEventi<T extends Evento> {
         int tempAnno = anno;
 
         for (int i = 0; i < elements.size(); i++) {
-            T currentEvent = elements.get(i);
+            Evento currentEvent = elements.get(i);
             if (currentEvent.anno == tempAnno && currentEvent.mese == tempMese && currentEvent.giorno == tempGiorno) {
                 this.returnedEvent.add(currentEvent);
             }
@@ -56,7 +58,7 @@ public class ProgrammaEventi<T extends Evento> {
 
     public void formattedElements() {
         for (int i = 0; i < this.elements.size(); i++) {
-            T currentElement = this.elements.get(i);
+            Evento currentElement = this.elements.get(i);
             Output.sysOut(currentElement.getDate() + " - " + currentElement.getTitle());
         }
     }

@@ -2,47 +2,65 @@ package org.classes.idk;
 
 import java.util.ArrayList;
 
-public class ProgrammaConcerti {
-    protected ArrayList<Concerto> Concerti = new ArrayList<>();
+public class ProgrammaConcerti implements generics<Concerto> {
+    protected ArrayList<Concerto> elements = new ArrayList<Concerto>();
+    protected ArrayList<Concerto> returnedEvent = new ArrayList<Concerto>();
 
+    @Override
     public void setEvent(Concerto i) {
-        this.Concerti.add(i);
+        this.elements.add(i);
     }
 
-    public ArrayList<Concerto> getEventsArray() {
-        return this.Concerti;
+    @Override
+    public ArrayList<Concerto> getItemsArray() {
+        return this.elements;
     }
 
-    public void getEvents(int giorno, int mese, int anno) {
-        ArrayList<Concerto> returnedConcert = new ArrayList<>();
-        if (giorno < 0 || giorno > 31) {
-            throw new IllegalArgumentException("Il giorno dev'essere compreso tra 0 e 31");
+    public ArrayList<Concerto> getEvents(int giorno, int mese, int anno) {
+        cleanReturnedArray();
+        if (giorno < 1 || giorno > 31) {
+            throw new IllegalArgumentException("Il giorno dev'essere compreso tra 1 e 31");
         }
-        if (mese < 0 || giorno > 12) {
-            throw new IllegalArgumentException("Il mese dev'essere compreso tra 0 e 12");
+        if (mese < 1 || giorno > 12) {
+            throw new IllegalArgumentException("Il mese dev'essere compreso tra 1 e 12");
         }
-        if (anno < 0) {
-            throw new IllegalArgumentException("L'anno non può essere inferiore a 0");
+        if (anno < 1) {
+            throw new IllegalArgumentException("L'anno non può essere inferiore a 1");
         }
 
         int tempGiorno = giorno;
         int tempMese = mese;
         int tempAnno = anno;
 
-        for (int i = 0; i < Concerti.size(); i++) {
-            Concerto currentEvent = Concerti.get(i);
+        for (int i = 0; i < elements.size(); i++) {
+            Concerto currentEvent = elements.get(i);
             if (currentEvent.anno == tempAnno && currentEvent.mese == tempMese && currentEvent.giorno == tempGiorno) {
-                returnedConcert.add(currentEvent);
+                this.returnedEvent.add(currentEvent);
             }
 
         }
-        if (returnedConcert.size() == 0) {
-            Output.sysOut("Non ci sono eventi da visualizzare.");
-        } else {
-            for (int i = 0; i < returnedConcert.size(); i++) {
-                Evento currentEvent = returnedConcert.get(i);
-                Output.sysOut(currentEvent);
-            }
+        if (returnedEvent.size() == 0) {
+            Output.sysOut("Non ci sono elementi da visualizzare.");
+            return this.returnedEvent;
+        }
+
+        return this.returnedEvent;
+
+    }
+
+    public int getElementsNumber() {
+        return this.elements.size();
+    }
+
+    public void cleanReturnedArray() {
+        returnedEvent.clear();
+    }
+
+    public void formattedElements() {
+        for (int i = 0; i < this.elements.size(); i++) {
+            Concerto currentElement = this.elements.get(i);
+            Output.sysOut(
+                    currentElement.getDate() + " - " + currentElement.getOrario() + " - " + currentElement.getTitle());
         }
     }
 }

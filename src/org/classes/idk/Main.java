@@ -2,10 +2,10 @@ package org.classes.idk;
 
 public class Main {
     public static void main(String[] args) {
-        ProgrammaEventi<Evento> eventi = new ProgrammaEventi<>();
-        ProgrammaEventi<Concerto> concerti = new ProgrammaEventi<>();
+        ProgrammaEventi eventi = new ProgrammaEventi();
+        ProgrammaConcerti concerti = new ProgrammaConcerti();
         Boolean a = true;
-        input in = new input();
+        input in = new input(3);
 
         while (a) {
             if (a) {

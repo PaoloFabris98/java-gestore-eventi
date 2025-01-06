@@ -2,19 +2,19 @@ package org.classes.idk;
 
 import java.util.ArrayList;
 
-public class Test<T extends Evento> {
-    protected ArrayList<T> elements = new ArrayList<>();
-    protected ArrayList<T> returnedEvent = new ArrayList<>();
+public class Test {
+    protected ArrayList<Concerto> elements = new ArrayList<Concerto>();
+    protected ArrayList<Concerto> returnedEvent = new ArrayList<Concerto>();
 
-    public void setEvent(T i) {
+    public void setEvent(Concerto i) {
         this.elements.add(i);
     }
 
-    public ArrayList<T> getEventsArray() {
+    public ArrayList<Concerto> getItemsArray() {
         return this.elements;
     }
 
-    public ArrayList<T> getEvents(int giorno, int mese, int anno) {
+    public ArrayList<Concerto> getEvents(int giorno, int mese, int anno) {
         cleanReturnedArray();
         if (giorno < 1 || giorno > 31) {
             throw new IllegalArgumentException("Il giorno dev'essere compreso tra 1 e 31");
@@ -31,7 +31,7 @@ public class Test<T extends Evento> {
         int tempAnno = anno;
 
         for (int i = 0; i < elements.size(); i++) {
-            T currentEvent = elements.get(i);
+            Concerto currentEvent = elements.get(i);
             if (currentEvent.anno == tempAnno && currentEvent.mese == tempMese && currentEvent.giorno == tempGiorno) {
                 this.returnedEvent.add(currentEvent);
             }
@@ -56,7 +56,7 @@ public class Test<T extends Evento> {
 
     public void formattedElements() {
         for (int i = 0; i < this.elements.size(); i++) {
-            T currentElement = this.elements.get(i);
+            Evento currentElement = this.elements.get(i);
             Output.sysOut(currentElement.getDate() + " - " + currentElement.getTitle());
         }
     }
