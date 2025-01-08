@@ -257,7 +257,7 @@ public class Options {
         }
     }
 
-    public static void eventList(ProgrammaEventi eventi, ProgrammaConcerti concerti, input in) {
+    public static void itemList(ProgrammaEventi eventi, ProgrammaConcerti concerti, input in) {
         Output.sysOut("\n");
         int temp2;
 
@@ -287,7 +287,7 @@ public class Options {
                 int tempMonth = Integer.parseInt(Funct.numberFormatted(in.nextInt()));
                 Output.sysOut("Inserisci l'anno:");
                 int tempYear = Integer.parseInt(Funct.numberFormatted(in.nextInt()));
-                ArrayList<Evento> retuArrayListTemp = eventi.getEvents(tempDay, tempMonth, tempYear);
+                ArrayList<Evento> retuArrayListTemp = eventi.getEvent(tempDay, tempMonth, tempYear);
                 Output.sysOut("Gli eventi in data: " + tempDay + "/" + tempMonth + "/" + tempYear + ". Sono:");
                 for (int i = 0; i < retuArrayListTemp.size(); i++) {
                     Evento currentElement = retuArrayListTemp.get(i);
@@ -314,7 +314,7 @@ public class Options {
                 int tempMonth = Integer.parseInt(Funct.numberFormatted(in.nextInt()));
                 Output.sysOut("Inserisci l'anno:");
                 int tempYear = Integer.parseInt(Funct.numberFormatted(in.nextInt()));
-                ArrayList<Concerto> retuArrayListTemp = concerti.getEvents(tempDay, tempMonth, tempYear);
+                ArrayList<Concerto> retuArrayListTemp = concerti.getConcert(tempDay, tempMonth, tempYear);
                 Output.sysOut("Gli eventi in data: " + tempDay + "/" + tempMonth + "/" + tempYear + ". Sono:");
                 for (int i = 0; i < retuArrayListTemp.size(); i++) {
                     Concerto currentElement = retuArrayListTemp.get(i);
@@ -358,13 +358,56 @@ public class Options {
         Output.sysOut("---------------------------------");
 
         temp2 = in.nextInt();
-
+        int temp3;
         if (temp2 == 0) {
-            eventi.cleanArray();
-            Output.sysOut("Eventi cancellati.");
+            Output.sysOut("Cosa si vuole cancellare?");
+            Output.sysOut("---------------------------------");
+            Output.sysOut("0 - Tutti");
+            Output.sysOut("1 - evento specifico");
+            Output.sysOut("---------------------------------");
+
+            temp3 = in.nextInt();
+            if (temp3 == 0) {
+                eventi.cleanArray();
+                Output.sysOut("Eventi cancellati.");
+            } else if (temp3 == 1) {
+                Output.sysOut("Quale elemento si vuole cancellare?");
+                Output.sysOut("---------------------------------");
+                for (int i = 0; i < eventi.getItemsArray().size(); i++) {
+                    Evento currentElement = eventi.getItemsArray().get(i);
+                    Output.sysOut(i + " - " + currentElement.getTitle());
+                }
+                Output.sysOut("---------------------------------");
+                int temp4 = in.nextInt();
+                eventi.cleanArrayItem(temp4);
+            } else {
+                Output.sysOut("Devi scegliere un'opzione valida.");
+            }
         } else if (temp2 == 1) {
-            concerti.cleanArray();
-            Output.sysOut("Concerti cancellati.");
+            Output.sysOut("Cosa si vuole cancellare?");
+            Output.sysOut("---------------------------------");
+            Output.sysOut("0 - Tutti");
+            Output.sysOut("1 - evento specifico");
+            Output.sysOut("---------------------------------");
+
+            temp3 = in.nextInt();
+            if (temp3 == 0) {
+                concerti.cleanArray();
+                Output.sysOut("Concerti cancellati.");
+            } else if (temp3 == 1) {
+                Output.sysOut("Quale elemento si vuole cancellare?");
+                Output.sysOut("---------------------------------");
+                for (int i = 0; i < concerti.getItemsArray().size(); i++) {
+                    Concerto currentElement = concerti.getItemsArray().get(i);
+                    Output.sysOut(i + " - " + currentElement.getTitle());
+                }
+                Output.sysOut("---------------------------------");
+                int temp4 = in.nextInt();
+                concerti.cleanArrayItem(temp4);
+                Output.sysOut("Il concerto è stato cancellato.");
+            } else {
+                Output.sysOut("Devi scegliere un'opzione valida.");
+            }
         }
 
     }

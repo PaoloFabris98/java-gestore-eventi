@@ -1,7 +1,6 @@
 package org.classes.idk;
 
 import java.text.SimpleDateFormat;
-
 import java.util.Calendar;
 
 public class Funct {

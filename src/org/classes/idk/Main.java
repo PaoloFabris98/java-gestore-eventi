@@ -34,7 +34,7 @@ public class Main {
                 } else if (temp1 == 5) {
                     Options.disdette(eventi, concerti, in);
                 } else if (temp1 == 6) {
-                    Options.eventList(eventi, concerti, in);
+                    Options.itemList(eventi, concerti, in);
                 } else if (temp1 == 7) {
                     Options.getElementsNumber(eventi, concerti, in);
                 } else if (temp1 == 8) {

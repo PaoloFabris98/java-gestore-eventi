@@ -8,4 +8,13 @@ public interface generics<T> {
 
     ArrayList<T> getItemsArray();
 
+    int getElementsNumber();
+
+    void cleanReturnedArray();
+
+    void cleanArray();
+
+    void cleanArrayItem(int option);
+
+    void formattedElements();
 }

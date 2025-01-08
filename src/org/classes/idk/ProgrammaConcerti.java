@@ -6,17 +6,15 @@ public class ProgrammaConcerti implements generics<Concerto> {
     protected ArrayList<Concerto> elements = new ArrayList<Concerto>();
     protected ArrayList<Concerto> returnedEvent = new ArrayList<Concerto>();
 
-    @Override
     public void setEvent(Concerto i) {
         this.elements.add(i);
     }
 
-    @Override
     public ArrayList<Concerto> getItemsArray() {
         return this.elements;
     }
 
-    public ArrayList<Concerto> getEvents(int giorno, int mese, int anno) {
+    public ArrayList<Concerto> getConcert(int giorno, int mese, int anno) {
         cleanReturnedArray();
         if (giorno < 1 || giorno > 31) {
             throw new IllegalArgumentException("Il giorno dev'essere compreso tra 1 e 31");
@@ -58,6 +56,15 @@ public class ProgrammaConcerti implements generics<Concerto> {
 
     public void cleanArray() {
         this.elements.clear();
+    }
+
+    public void cleanArrayItem(int option) {
+        if (option >= 0 && option < this.elements.size()) {
+            this.elements.remove(option);
+        } else {
+            System.out.println("L'indice: " + option + " non è valido o non esiste.");
+        }
+
     }
 
     public void formattedElements() {

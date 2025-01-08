@@ -6,17 +6,15 @@ public class ProgrammaEventi implements generics<Evento> {
     protected ArrayList<Evento> elements = new ArrayList<Evento>();
     protected ArrayList<Evento> returnedEvent = new ArrayList<Evento>();
 
-    @Override
     public void setEvent(Evento i) {
         this.elements.add(i);
     }
 
-    @Override
     public ArrayList<Evento> getItemsArray() {
         return this.elements;
     }
 
-    public ArrayList<Evento> getEvents(int giorno, int mese, int anno) {
+    public ArrayList<Evento> getEvent(int giorno, int mese, int anno) {
         cleanReturnedArray();
         if (giorno < 1 || giorno > 31) {
             throw new IllegalArgumentException("Il giorno dev'essere compreso tra 1 e 31");
@@ -58,6 +56,15 @@ public class ProgrammaEventi implements generics<Evento> {
 
     public void cleanArray() {
         this.elements.clear();
+    }
+
+    public void cleanArrayItem(int option) {
+        if (option >= 0 && option < this.elements.size()) {
+            this.elements.remove(option);
+        } else {
+            System.out.println("L'indice: " + option + " non è valido o non esiste.");
+        }
+
     }
 
     public void formattedElements() {
