@@ -49,8 +49,6 @@ public class Main {
                     break;
                 }
 
-            } else {
-                break;
             }
 
         }
