@@ -74,4 +74,15 @@ public class ProgrammaConcerti implements generics<Concerto> {
                     currentElement.getDate() + " - " + currentElement.getOrario() + " - " + currentElement.getTitle());
         }
     }
+
+    public void specificFormattedElements(int giorno, int mese, int anno) {
+        for (int i = 0; i < this.elements.size(); i++) {
+            Concerto currentElement = this.elements.get(i);
+            if (currentElement.giorno == Integer.parseInt(Funct.numberFormatted(giorno))
+                    && currentElement.mese == Integer.parseInt(Funct.numberFormatted(mese))
+                    && currentElement.anno == anno) {
+                Output.sysOut(currentElement.getDate() + " - " + currentElement.getTitle());
+            }
+        }
+    }
 }

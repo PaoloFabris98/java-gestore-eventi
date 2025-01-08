@@ -25,7 +25,7 @@ public class Funct {
     public static boolean eventCreatorPremission(int temp) {
         try {
 
-            if (temp == 9) {
+            if (temp == 8) {
                 return false;
             } else {
                 return true;

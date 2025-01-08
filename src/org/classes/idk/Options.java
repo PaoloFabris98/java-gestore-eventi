@@ -82,10 +82,10 @@ public class Options {
         int temp2;
         Output.sysOut("Cosa vuoi visualizzare?");
         Output.sysOut("---------------------------------");
-        Output.sysOut("0 - Evento");
-        Output.sysOut("1 - Concerto");
-        Output.sysOut("2 - Lista Eventi");
-        Output.sysOut("3 - Lista Concerti");
+        Output.sysOut("0 - Visualizza tutti gli Eventi");
+        Output.sysOut("1 - Visualizza tutti i Concerti");
+        Output.sysOut("2 - Visualizza gli eventi in base alla data");
+        Output.sysOut("3 - Visualizza i concerti in base alla data");
         Output.sysOut("---------------------------------");
 
         temp2 = in.nextInt();
@@ -141,17 +141,37 @@ public class Options {
             }
         } else if (temp2 == 2) {
             if (eventi.getItemsArray().size() == 0) {
-                Output.sysOut("Non ci sono eventi da visualizzare");
+                Output.sysOut("Non ci sono eventi da visualizzare.");
             } else {
-                eventi.formattedElements();
-                eventi.cleanReturnedArray();
+                Output.sysOut("Inserisci il giorno:");
+                int tempDay = Integer.parseInt(Funct.numberFormatted(in.nextInt()));
+                Output.sysOut("Inserisci il mese:");
+                int tempMonth = Integer.parseInt(Funct.numberFormatted(in.nextInt()));
+                Output.sysOut("Inserisci l'anno:");
+                int tempYear = Integer.parseInt(Funct.numberFormatted(in.nextInt()));
+                ArrayList<Evento> retuArrayListTemp = eventi.getEvent(tempDay, tempMonth, tempYear);
+                Output.sysOut("Gli eventi in data: " + tempDay + "/" + tempMonth + "/" + tempYear + ". Sono:");
+                for (int i = 0; i < retuArrayListTemp.size(); i++) {
+                    Evento currentElement = retuArrayListTemp.get(i);
+                    Output.sysOut(currentElement.getTitle());
+                }
             }
         } else if (temp2 == 3) {
-            if (eventi.getItemsArray().size() == 0) {
-                Output.sysOut("Non ci sono eventi da visualizzare");
+            if (concerti.getItemsArray().size() == 0) {
+                Output.sysOut("Non ci sono concerti da visualizzare.");
             } else {
-                concerti.formattedElements();
-                concerti.cleanReturnedArray();
+                Output.sysOut("Inserisci il giorno:");
+                int tempDay = Integer.parseInt(Funct.numberFormatted(in.nextInt()));
+                Output.sysOut("Inserisci il mese:");
+                int tempMonth = Integer.parseInt(Funct.numberFormatted(in.nextInt()));
+                Output.sysOut("Inserisci l'anno:");
+                int tempYear = Integer.parseInt(Funct.numberFormatted(in.nextInt()));
+                ArrayList<Concerto> retuArrayListTemp = concerti.getConcert(tempDay, tempMonth, tempYear);
+                Output.sysOut("Gli eventi in data: " + tempDay + "/" + tempMonth + "/" + tempYear + ". Sono:");
+                for (int i = 0; i < retuArrayListTemp.size(); i++) {
+                    Concerto currentElement = retuArrayListTemp.get(i);
+                    Output.sysOut(currentElement.getTitle());
+                }
             }
 
         } else {
@@ -255,76 +275,6 @@ public class Options {
         } else {
             Output.sysOut("Devi inserire una selezione valida.");
         }
-    }
-
-    public static void itemList(ProgrammaEventi eventi, ProgrammaConcerti concerti, input in) {
-        Output.sysOut("\n");
-        int temp2;
-
-        Output.sysOut("Che lista vuoi visualizzare?");
-        Output.sysOut("---------------------------------");
-        Output.sysOut("0 - Eventi");
-        Output.sysOut("1 - Concerti");
-        Output.sysOut("---------------------------------");
-
-        temp2 = in.nextInt();
-
-        if (temp2 == 0) {
-            Output.sysOut("\n");
-            int temp3;
-            Output.sysOut("Come si vuole effettuare la ricerca?");
-            Output.sysOut("---------------------------------");
-            Output.sysOut("0 - Visualizza Tutti");
-            Output.sysOut("1 - Tramite Data");
-            Output.sysOut("---------------------------------");
-            temp3 = in.nextInt();
-            if (temp3 == 0) {
-                eventi.formattedElements();
-            } else if (temp3 == 1) {
-                Output.sysOut("Inserisci il giorno:");
-                int tempDay = Integer.parseInt(Funct.numberFormatted(in.nextInt()));
-                Output.sysOut("Inserisci il mese:");
-                int tempMonth = Integer.parseInt(Funct.numberFormatted(in.nextInt()));
-                Output.sysOut("Inserisci l'anno:");
-                int tempYear = Integer.parseInt(Funct.numberFormatted(in.nextInt()));
-                ArrayList<Evento> retuArrayListTemp = eventi.getEvent(tempDay, tempMonth, tempYear);
-                Output.sysOut("Gli eventi in data: " + tempDay + "/" + tempMonth + "/" + tempYear + ". Sono:");
-                for (int i = 0; i < retuArrayListTemp.size(); i++) {
-                    Evento currentElement = retuArrayListTemp.get(i);
-                    Output.sysOut(currentElement.getTitle());
-                }
-            } else {
-                Output.sysOut("Devi inserire una selezione valida.");
-            }
-        } else if (temp2 == 1) {
-            Output.sysOut("\n");
-            int temp3;
-            Output.sysOut("Come si vuole effettuare la ricerca?");
-            Output.sysOut("---------------------------------");
-            Output.sysOut("0 - Visualizza Tutti");
-            Output.sysOut("1 - Tramite Data");
-            Output.sysOut("---------------------------------");
-            temp3 = in.nextInt();
-            if (temp3 == 0) {
-                concerti.formattedElements();
-            } else if (temp3 == 1) {
-                Output.sysOut("Inserisci il giorno:");
-                int tempDay = Integer.parseInt(Funct.numberFormatted(in.nextInt()));
-                Output.sysOut("Inserisci il mese:");
-                int tempMonth = Integer.parseInt(Funct.numberFormatted(in.nextInt()));
-                Output.sysOut("Inserisci l'anno:");
-                int tempYear = Integer.parseInt(Funct.numberFormatted(in.nextInt()));
-                ArrayList<Concerto> retuArrayListTemp = concerti.getConcert(tempDay, tempMonth, tempYear);
-                Output.sysOut("Gli eventi in data: " + tempDay + "/" + tempMonth + "/" + tempYear + ". Sono:");
-                for (int i = 0; i < retuArrayListTemp.size(); i++) {
-                    Concerto currentElement = retuArrayListTemp.get(i);
-                    Output.sysOut(currentElement.getTitle());
-                }
-            } else {
-                Output.sysOut("Devi inserire una selezione valida.");
-            }
-        }
-
     }
 
     public static void getElementsNumber(ProgrammaEventi eventi, ProgrammaConcerti concerti, input in) {
