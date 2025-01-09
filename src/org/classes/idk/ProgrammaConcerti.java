@@ -38,7 +38,7 @@ public class ProgrammaConcerti implements generics<Concerto> {
 
         }
         if (returnedEvent.size() == 0) {
-            Output.sysOut("Non ci sono elementi da visualizzare.");
+            Output.sysOut("Non ci sono concerti da visualizzare.");
             return this.returnedEvent;
         }
 
@@ -61,6 +61,7 @@ public class ProgrammaConcerti implements generics<Concerto> {
     public void cleanArrayItem(int option) {
         if (option >= 0 && option < this.elements.size()) {
             this.elements.remove(option);
+            Output.sysOut("Concerto cancellato");
         } else {
             System.out.println("L'indice: " + option + " non è valido o non esiste.");
         }

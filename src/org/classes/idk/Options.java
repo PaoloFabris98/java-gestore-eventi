@@ -10,7 +10,6 @@ public class Options {
         int temp2 = in.nextInt();
         Output.sysOut("");
         for (int i = 0; i < temp2; i++) {
-            Evento currentEvent = eventi.getItemsArray().get(i);
             Output.sysOut("");
             Output.sysOut("Evento numero: " + (i + 1));
             Output.sysOut("---------------------------------");
@@ -29,6 +28,7 @@ public class Options {
 
             int posti = in.nextInt();
             eventi.setEvent(new Evento(nome, giorno, mese, anno, posti));
+            Evento currentEvent = eventi.getItemsArray().get(i);
             Output.sysOut("\n");
             Output.sysOut("Titolo dell'evento numero " + (i + 1) + ": " + currentEvent.getTitle());
             Output.sysOut("L'evento si terrà in data: " + currentEvent.getDate() + ".");
@@ -43,7 +43,6 @@ public class Options {
         int temp2 = in.nextInt();
         Output.sysOut("");
         for (int i = 0; i < temp2; i++) {
-            Concerto currentConcert = concerti.getItemsArray().get(i);
             Output.sysOut("");
             Output.sysOut("Concerto numero: " + (i + 1));
             Output.sysOut("---------------------------------");
@@ -67,6 +66,7 @@ public class Options {
             Output.sysOut("Inserisci i posti totali del concerto:");
             int posti = in.nextInt();
             concerti.setEvent(new Concerto(nome, giorno, mese, anno, posti, minuti, ora, prezzo));
+            Concerto currentConcert = concerti.getItemsArray().get(i);
             Output.sysOut("\n");
             Output.sysOut("Titolo del concerto numero " + (i + 1) + ": " + currentConcert.getTitle());
             Output.sysOut("Il concerto si terrà in data: " + currentConcert.getDate() + ".");
@@ -97,6 +97,7 @@ public class Options {
             } else {
                 for (int i = 0; i < eventi.getItemsArray().size(); i++) {
                     Evento currentEvents = eventi.getItemsArray().get(i);
+                    Output.sysOut("---------------------------------");
                     Output.sysOut("Evento numero: " + (i + 1) + ".");
                     Output.sysOut("Titolo: " + currentEvents.getTitle() + ".");
                     Output.sysOut("L'evento si terrà in data: " + currentEvents.getDate() + ".");
@@ -108,6 +109,7 @@ public class Options {
                     Output.sysOut(
                             "I posti disponibili per l'evento sono: " + currentEvents.getPostiDisponibili()
                                     + ".");
+                    Output.sysOut("---------------------------------");
                     Output.sysOut("\n");
                 }
             }
@@ -118,6 +120,7 @@ public class Options {
             } else {
                 for (int i = 0; i < concerti.getItemsArray().size(); i++) {
                     Concerto currentConcert = concerti.getItemsArray().get(i);
+                    Output.sysOut("---------------------------------");
                     Output.sysOut("Concerto numero: " + (i + 1) + ".");
                     Output.sysOut("Titolo: " + currentConcert.getTitle() + ".");
                     Output.sysOut("Il concerto si terrà in data: " + currentConcert.getDate() + " alle: "
@@ -136,11 +139,13 @@ public class Options {
                             "I posti disponibili per il concerto sono: "
                                     + currentConcert.getPostiDisponibili()
                                     + ".");
+                    Output.sysOut("---------------------------------");
                     Output.sysOut("\n");
                 }
             }
         } else if (temp2 == 2) {
             if (eventi.getItemsArray().size() == 0) {
+                Output.sysOut("\n");
                 Output.sysOut("Non ci sono eventi da visualizzare.");
             } else {
                 Output.sysOut("Inserisci il giorno:");
@@ -150,14 +155,19 @@ public class Options {
                 Output.sysOut("Inserisci l'anno:");
                 int tempYear = Integer.parseInt(Funct.numberFormatted(in.nextInt()));
                 ArrayList<Evento> retuArrayListTemp = eventi.getEvent(tempDay, tempMonth, tempYear);
-                Output.sysOut("Gli eventi in data: " + tempDay + "/" + tempMonth + "/" + tempYear + ". Sono:");
-                for (int i = 0; i < retuArrayListTemp.size(); i++) {
-                    Evento currentElement = retuArrayListTemp.get(i);
-                    Output.sysOut(currentElement.getTitle());
+                if (retuArrayListTemp.size() != 0) {
+                    Output.sysOut("Gli eventi in data: " + tempDay + "/" + tempMonth + "/" + tempYear + ". Sono:");
+                    for (int i = 0; i < retuArrayListTemp.size(); i++) {
+                        Output.sysOut("---------------------------------");
+                        Evento currentElement = retuArrayListTemp.get(i);
+                        Output.sysOut(currentElement.getTitle());
+                        Output.sysOut("---------------------------------");
+                    }
                 }
             }
         } else if (temp2 == 3) {
             if (concerti.getItemsArray().size() == 0) {
+                Output.sysOut("\n");
                 Output.sysOut("Non ci sono concerti da visualizzare.");
             } else {
                 Output.sysOut("Inserisci il giorno:");
@@ -167,10 +177,14 @@ public class Options {
                 Output.sysOut("Inserisci l'anno:");
                 int tempYear = Integer.parseInt(Funct.numberFormatted(in.nextInt()));
                 ArrayList<Concerto> retuArrayListTemp = concerti.getConcert(tempDay, tempMonth, tempYear);
-                Output.sysOut("Gli eventi in data: " + tempDay + "/" + tempMonth + "/" + tempYear + ". Sono:");
-                for (int i = 0; i < retuArrayListTemp.size(); i++) {
-                    Concerto currentElement = retuArrayListTemp.get(i);
-                    Output.sysOut(currentElement.getTitle());
+                if (retuArrayListTemp.size() != 0) {
+                    Output.sysOut("I concerti in data: " + tempDay + "/" + tempMonth + "/" + tempYear + ". Sono:");
+                    for (int i = 0; i < retuArrayListTemp.size(); i++) {
+                        Output.sysOut("---------------------------------");
+                        Concerto currentElement = retuArrayListTemp.get(i);
+                        Output.sysOut(currentElement.getTitle());
+                        Output.sysOut("---------------------------------");
+                    }
                 }
             }
 
