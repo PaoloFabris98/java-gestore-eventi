@@ -46,7 +46,7 @@ public class Concerto extends Evento {
         this.ore = ore;
         this.orario = temp;
         this.prezzo = prezzo;
-        this.prezzoFormattato = prezzo + "€";
+        this.prezzoFormattato = prezzo + " Euro";
     }
 
     public String getOrario() {
@@ -58,7 +58,7 @@ public class Concerto extends Evento {
     }
 
     public String getPrezzoFormattato() {
-        return (this.prezzo + " Euro");
+        return this.prezzoFormattato;
     }
 
     public void setOrario(int minuti, int ore) {
