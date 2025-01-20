@@ -53,10 +53,8 @@ public class Evento {
 
     public void setDate(int giorno, int mese, int anno) {
 
-        String timeStamp = Funct.timeNow();
         String temp = anno + Funct.numberFormatted(mese) + Funct.numberFormatted(giorno);
-        if (Integer.parseInt(timeStamp) > Integer.parseInt(temp)) {
-            Output.sysOut("Ora: " + timeStamp);
+        if (Funct.dayPassed(temp)) {
             Output.sysOut("Data Evento: " + temp);
             throw new IllegalArgumentException("La data attuale è dopo la data dell'evento");
         }
