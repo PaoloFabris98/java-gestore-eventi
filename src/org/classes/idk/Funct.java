@@ -32,7 +32,7 @@ public class Funct {
                 return true;
             }
         } catch (Exception e) {
-            throw new IllegalArgumentException("La selezione può contenere solo numeri interi: 1-5");
+            throw new IllegalArgumentException("La selezione può contenere solo numeri interi: 1-8");
         }
     }
 
