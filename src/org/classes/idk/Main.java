@@ -53,7 +53,7 @@ public class Main {
                     Options.getElementsNumber(eventi, concerti, in);
                 } else if (temp1 == 7) {
                     Options.clearList(eventi, concerti, in);
-                } else if (temp1 == 8) {
+                } else if (temp1 == 9) {
                     a = Funct.eventCreatorPremission(temp1);
                     Output.sysOut("Buona giornata!");
                 } else if (temp1 <= 0 || temp1 > 8) {
