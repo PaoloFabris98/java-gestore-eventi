@@ -68,6 +68,14 @@ public class Concerto extends Evento {
         if (ore < 0 || ore > 23) {
             throw new IllegalArgumentException("Le ore devono essere comprese tra 0 e 23.");
         }
+        String eventTime = Funct.numberFormatted(ore) + Funct.numberFormatted(minuti);
+        long tempHourNow = Long.parseLong(Funct.timeNow() + Funct.minuteHourNow());
+        long tempEventTime = Long
+                .parseLong(this.anno + Funct.numberFormatted(this.mese) + Funct.numberFormatted(this.giorno)
+                        + eventTime);
+        if (tempHourNow > tempEventTime) {
+            throw new IllegalArgumentException("L'orario dell'evento è già passato.");
+        }
         String temp = Funct.numberFormatted(ore) + ":" + Funct.numberFormatted(minuti);
         this.orario = temp;
     }
