@@ -60,6 +60,9 @@ public class Evento {
                 Output.sysOut("Data Evento: " + temp);
                 throw new IllegalArgumentException("La data attuale è dopo la data dell'evento");
             }
+            this.giorno = giorno;
+            this.mese = mese;
+            this.anno = anno;
             this.data = giorno + "/" + mese + "/" + anno;
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Puoi inserire solo numeri interi nella creazione della data.");
