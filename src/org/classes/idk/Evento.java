@@ -60,6 +60,9 @@ public class Evento {
                 Output.sysOut("Data Evento: " + temp);
                 throw new IllegalArgumentException("La data attuale è dopo la data dell'evento");
             }
+            if (giorno <= 0 || giorno > 31 || mese <= 0 || mese > 12 || anno <= 0) {
+                throw new IllegalArgumentException("Data non valida.");
+            }
             this.giorno = giorno;
             this.mese = mese;
             this.anno = anno;
