@@ -52,24 +52,21 @@ public class Evento {
     }
 
     public void setDate(int giorno, int mese, int anno) {
-        try {
-            String timeStamp = Funct.timeNow();
-            String temp = anno + Funct.numberFormatted(mese) + Funct.numberFormatted(giorno);
-            if (Integer.parseInt(timeStamp) > Integer.parseInt(temp)) {
-                Output.sysOut("Ora: " + timeStamp);
-                Output.sysOut("Data Evento: " + temp);
-                throw new IllegalArgumentException("La data attuale è dopo la data dell'evento");
-            }
-            if (giorno <= 0 || giorno > 31 || mese <= 0 || mese > 12 || anno <= 0) {
-                throw new IllegalArgumentException("Data non valida.");
-            }
-            this.giorno = giorno;
-            this.mese = mese;
-            this.anno = anno;
-            this.data = giorno + "/" + mese + "/" + anno;
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Puoi inserire solo numeri interi nella creazione della data.");
+
+        String timeStamp = Funct.timeNow();
+        String temp = anno + Funct.numberFormatted(mese) + Funct.numberFormatted(giorno);
+        if (Integer.parseInt(timeStamp) > Integer.parseInt(temp)) {
+            Output.sysOut("Ora: " + timeStamp);
+            Output.sysOut("Data Evento: " + temp);
+            throw new IllegalArgumentException("La data attuale è dopo la data dell'evento");
         }
+        if (giorno <= 0 || giorno > 31 || mese <= 0 || mese > 12 || anno <= 0) {
+            throw new IllegalArgumentException("Data non valida.");
+        }
+        this.giorno = giorno;
+        this.mese = mese;
+        this.anno = anno;
+        this.data = giorno + "/" + mese + "/" + anno;
 
     }
 
